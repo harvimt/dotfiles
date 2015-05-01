@@ -1,3 +1,13 @@
+[include]
+	path = ~/.gitconfig_local
 [user]
 	name = Mark Harviston
-	email = Mark.Harviston.-ND@disney.com
+[push]
+	default = matching
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = /usr/bin/vim
+[merge]
+	tool = meld
+[mergetool.meld]
+	path = /usr/bin/meld
