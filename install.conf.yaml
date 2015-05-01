@@ -13,4 +13,4 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [touch .zshrc_local .gitconfig_local, Creating Local Files]
+  - [touch ~/.zshrc_local ~/.gitconfig_local, Creating Local Files]
