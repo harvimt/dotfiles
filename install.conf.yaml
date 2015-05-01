@@ -6,6 +6,10 @@
     ~/.zprezto: prezto
     ~/.zshrc: prezto/runcoms/zshrc
     ~/.zshenv: prezto/runcoms/zshenv
+    ~/.zlogin: prezto/runcoms/zlogin
+    ~/.zlogout: prezto/runcoms/zlogout
+    ~/.zpreztorc: prezto/runcoms/zpreztorc
+    ~/.zprofile: prezto/runcoms/zprofile
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
