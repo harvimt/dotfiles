@@ -1,0 +1,12 @@
+- link:
+    ~/.tmux.conf: tmux.conf
+    ~/.tmuxline-snapshot: tmuxline-snapshot
+    ~/.vim: vim
+    ~/.vimrc: vimrc
+    ~/.zprezto: prezto
+    ~/.zshrc: prezto/runcoms/zshrc
+    ~/.zshenv: prezto/runcoms/zshenv
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [touch .zshrc_local .gitconfig_local, Creating Local Files]
