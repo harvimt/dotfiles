@@ -18,7 +18,7 @@
 	url = https://github.com/Anthony25/gnome-terminal-colors-solarized
 [submodule "prezto"]
 	path = prezto
-	url = https://github.com/sorin-ionescu/prezto.git
+	url = ssh://git@github.com/harvimt/prezto.git
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic
