@@ -30,6 +30,7 @@ nmap <leader>gc :Gcommit<cr>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 nmap <leader>gcl :!git cola<cr>
+nmap <leader>dbg oimport pdb; pdb.set_trace()  # noqa<esc>
 
 set list
 set listchars=tab:⇥\ 
