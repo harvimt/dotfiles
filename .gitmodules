@@ -40,3 +40,9 @@
 [submodule "z"]
 	path = z
 	url = https://github.com/rupa/z
+[submodule "vim/bundle/vim-git-log"]
+	path = vim/bundle/vim-git-log
+	url = https://github.com/kablamo/vim-git-log
+[submodule "vim/bundle/editorconfig-vim"]
+	path = vim/bundle/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
