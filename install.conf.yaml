@@ -10,6 +10,8 @@
     ~/.zlogout: prezto/runcoms/zlogout
     ~/.zpreztorc: prezto/runcoms/zpreztorc
     ~/.zprofile: prezto/runcoms/zprofile
+    ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
