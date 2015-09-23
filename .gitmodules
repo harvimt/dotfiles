@@ -46,3 +46,6 @@
 [submodule "prezto"]
 	path = prezto
 	url = ssh://git@github.com/harvimt/prezto.git
+[submodule "vim/bundle/DrawIt"]
+	path = vim/bundle/DrawIt
+	url = https://github.com/vim-scripts/DrawIt
