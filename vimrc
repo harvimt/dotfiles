@@ -35,6 +35,11 @@ nmap <leader>dbg oimport pdb; pdb.set_trace()  # noqa<esc>
 set list
 set listchars=tab:⇥\ 
 
+augroup vagrant
+  au!
+  au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
+
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype xml setlocal ts=2 sts=2 sw=2
