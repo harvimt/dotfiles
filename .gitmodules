@@ -49,3 +49,6 @@
 [submodule "vim/bundle/DrawIt"]
 	path = vim/bundle/DrawIt
 	url = https://github.com/vim-scripts/DrawIt
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/junegunn/fzf.git
