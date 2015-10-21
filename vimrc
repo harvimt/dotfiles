@@ -40,6 +40,11 @@ augroup vagrant
   au BufRead,BufNewFile Vagrantfile set filetype=ruby
 augroup END
 
+augroup berkshelf
+  au!
+  au BufRead,BufNewFile Berksfile set filetype=ruby
+augroup END
+
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype xml setlocal ts=2 sts=2 sw=2
