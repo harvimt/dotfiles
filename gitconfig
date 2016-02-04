@@ -8,6 +8,8 @@
 	excludesfile = ~/.gitignore_global
 	editor = /usr/bin/vim
 [merge]
-	tool = meld
+	tool = vimdiff
+[mergetool.p4merge]
+	path = /Users/HARVM025/Applications/p4merge.app/Contents/MacOS/p4merge
 [mergetool.meld]
 	path = /usr/bin/meld

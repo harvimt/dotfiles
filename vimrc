@@ -22,6 +22,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_degug=1
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_path="/home/parallels/venvs/syntastic.env/bin/flake8"
+let g:EditorConfig_exec_path='/usr/local/bin/editorconfig'
+
 
 nmap ]l0 :lrewind<cr>
 nmap ]ln :lnext<cr>
