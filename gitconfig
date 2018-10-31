@@ -1,15 +1,42 @@
 [include]
-	path = ~/.gitconfig_local
+    path = ~/.gitconfig_local
 [user]
-	name = Mark Harviston
+    name = Mark Harviston
 [push]
-	default = matching
+    default = current
+    followTags = true
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = /usr/bin/vim
+    excludesfile = ~/.gitignore_global
+    editor = /usr/bin/vim
+    attributesfile = ~/.gitattributes
+[cola]
+    spellcheck = false
+[diff]
+    tool = meld
+[difftool]
+    rompt = false
+[difftool "meld"]
+    trustExitCode = true
+    cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+[difftool "json-diff"]
+    cmd = "json-diff-tool $BASE $LOCAL $REMOTE"
+    trustExitCode = true
 [merge]
-	tool = vimdiff
-[mergetool.p4merge]
-	path = /Users/HARVM025/Applications/p4merge.app/Contents/MacOS/p4merge
-[mergetool.meld]
-	path = /usr/bin/meld
+    tool = meld
+[merge "json"]
+    name = custom merge driver for json files
+    driver = git-json-merge %A %O %B
+[mergetool]
+    prompt = false
+[mergetool "meld"]
+    trustExitCode = true
+    cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+[alias]
+    json-diff = difftool -t json-diff
+    co = checkout
+[remote "origin"]
+    tagopt = --tags
+[http]
+	sslCAInfo = /Users/mharvist/lgl-ca
+[submodule]
+	recurse = true

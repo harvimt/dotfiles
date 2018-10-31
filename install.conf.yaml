@@ -12,9 +12,7 @@
     ~/.zprofile: prezto/runcoms/zprofile
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore
-    ~/.fzf: fzf
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [touch ~/.zshrc_local ~/.gitconfig_local, Creating Local Files]
-  - [~/.fzf/install]

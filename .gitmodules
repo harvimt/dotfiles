@@ -43,18 +43,9 @@
 [submodule "vim/bundle/editorconfig-vim"]
 	path = vim/bundle/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
-[submodule "prezto"]
-	path = prezto
-	url = ssh://git@github.com/harvimt/prezto.git
 [submodule "vim/bundle/DrawIt"]
 	path = vim/bundle/DrawIt
 	url = https://github.com/vim-scripts/DrawIt
-[submodule "fzf"]
-	path = fzf
-	url = https://github.com/junegunn/fzf.git
-[submodule "vim/bundle/fzf.vim"]
-	path = vim/bundle/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
 [submodule "vim/bundle/syntastic-extras"]
 	path = vim/bundle/syntastic-extras
 	url = https://github.com/myint/syntastic-extras
@@ -76,3 +67,21 @@
 [submodule "vim/bundle/vim-javascript-syntax"]
 	path = vim/bundle/vim-javascript-syntax
 	url = https://github.com/jelera/vim-javascript-syntax.git
+[submodule "prezto"]
+	path = prezto
+	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "vim/bundle/vcl-vim-plugin"]
+	path = vim/bundle/vcl-vim-plugin
+	url = https://github.com/smerrill/vcl-vim-plugin.git
+[submodule "zsh-syntax-highlighting"]
+	path = zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "vim/bundle/FastFold"]
+	path = vim/bundle/FastFold
+	url = https://github.com/Konfekt/FastFold.git
+[submodule "vim/bundle/Vundle.vim"]
+	path = vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "vim/bundle/vim-rspec"]
+	path = vim/bundle/vim-rspec
+	url = https://github.com/thoughtbot/vim-rspec.git

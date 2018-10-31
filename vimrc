@@ -1,14 +1,54 @@
-execute pathogen#infect()
+"execute pathogen#infect()
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Other Vundle plugins
+Plugin 'tpope/vim-fugitive'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'Konfekt/FastFold'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'myint/syntastic-extras'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'smerrill/vcl-vim-plugin'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-sensible'
+Plugin 'LucHermitte/lh-misc'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+"if has("termguicolors")
+    "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    "set termguicolors
+"endif
+
+let g:airline_powerline_fonts=0
+"let g:solarized_termcolors=256
 set background=dark
-color solarized
-let g:airline_powerline_fonts=1
+colorscheme solarized
 set mouse=a
 set ts=4
 set sw=4
 set smarttab
 set expandtab
 set nu
-set colorcolumn=80
+set colorcolumn=120
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -18,11 +58,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checkers = ['rubocop']
 
 let g:syntastic_degug=1
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_path="/home/parallels/venvs/syntastic.env/bin/flake8"
+let g:syntastic_python_flake8_path="~/pyenvs/flake8.py3.env/bin/flake8"
 let g:EditorConfig_exec_path='/usr/local/bin/editorconfig'
+let g:syntastic_eruby_ruby_quiet_messages = {'regex': 'possibly useless use of a variable in void context'}
 
 
 nmap ]l0 :lrewind<cr>
@@ -32,10 +74,12 @@ nmap <leader>gc :Gcommit<cr>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 nmap <leader>gcl :!git cola<cr>
-nmap <leader>dbg oimport pdb; pdb.set_trace()  # noqa<esc>
+nmap <leader>pdb oimport pdb; pdb.set_trace()  # noqa<esc>
+nmap <f6> :NERDTreeToggle<cr>
+nmap <f7> :TagbarToggle<cr>
 
 set list
-set listchars=tab:⇥\ 
+set listchars=tab:⇥\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 augroup vagrant
   au!
@@ -49,18 +93,19 @@ augroup END
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd Filetype json setlocal ts=2 sts=2 sw=2
 autocmd Filetype xml setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 autocmd Filetype java setlocal noexpandtab
 
 " FZF Options
-let g:fzf_dir = '~/.fzf'
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+"let g:fzf_dir = '~/.fzf'
+"imap <c-x><c-k> <plug>(fzf-complete-word)
+"imap <c-x><c-f> <plug>(fzf-complete-path)
+"imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+"imap <c-x><c-l> <plug>(fzf-complete-line)
 
-"Rainbow Options
+" Rainbow Options
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -83,3 +128,11 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 
 let g:rbpt_loadcmd_toggle = 0
+set clipboard=unnamed
+
+" RSpec.vim mappings
+"nmap <Leader>t :call RunCurrentSpecFile()<CR>
+let g:rspec_command = "!bundle exec rspec {spec}"
+nmap <Leader>rn :call RunNearestSpec()<CR>
+nmap <Leader>rl :call RunLastSpec()<CR>
+nmap <Leader>ra :call RunAllSpecs()<CR>
