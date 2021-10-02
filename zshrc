@@ -21,6 +21,11 @@ if which mvim &> /dev/null; then
 fi
 
 export PATH="$PATH:$HOME/pyenvs/flake8.py3.env/bin"
+if [[ -e ~/Library/Python/2.7 ]]; then
+    export PATH="${PATH}:/Users/mharvist/Library/Python/2.7/bin"
+fi
+
+alias rebuild-completions='rm -i ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompdump && compinit'
 
 source ~/.zshrc_local
 export EDITOR=$(echo =vim)
@@ -29,10 +34,8 @@ export VISUAL=${EDITOR}
 alias g=git
 alias dcp=docker-compose
 alias be='bundle exec'
-alias mussh='mussh -m 0 -o LogLevel=ERROR'
-
+alias autosquash='git rebase -i master --autosquash'
 source ~/.dotfiles/z/z.sh
-
 
 # ssh as root with password
 alias sshrp='ssh -o PreferredAuthentications=password -l root'
@@ -44,5 +47,9 @@ else
     alias ll='ls -l'
 fi
 
-alias vagrant-destroy-all='vagrant global-status | grep virtualbox | awk '\''{ print $1 }'\'' | xargs -n1 vagrant destroy -f'
+alias recent-branches='git branch --sort=-committerdate'
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ghc == glasgow haskell compiler
+[ -f "/Users/mharvist/.ghcup/env" ] && source "/Users/mharvist/.ghcup/env" # ghcup-env
+eval "$(rbenv init -)"

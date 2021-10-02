@@ -12,7 +12,7 @@
 [cola]
     spellcheck = false
 [diff]
-    tool = meld
+	tool = diffmerge
 [difftool]
     rompt = false
 [difftool "meld"]
@@ -21,13 +21,17 @@
 [difftool "json-diff"]
     cmd = "json-diff-tool $BASE $LOCAL $REMOTE"
     trustExitCode = true
+[difftool "yamldiff"]
+    cmd = "yamldiff --file1 $LOCAL --file2 $REMOTE"
+    trustExitCode = true
 [merge]
-    tool = meld
+	tool = diffmerge
 [merge "json"]
     name = custom merge driver for json files
     driver = git-json-merge %A %O %B
 [mergetool]
     prompt = false
+	keepBackup = false
 [mergetool "meld"]
     trustExitCode = true
     cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
@@ -36,7 +40,16 @@
     co = checkout
 [remote "origin"]
     tagopt = --tags
-[http]
-	sslCAInfo = /Users/mharvist/lgl-ca
 [submodule]
-	recurse = true
+    recurse = true
+[pull]
+    default = current
+    followTags = true
+	rebase = true
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true
+[init]
+	defaultBranch = master

@@ -1,4 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/mharvist/chef-repo/cookbooks/opc_base'
-let g:netrw_dirhist_2='/Users/mharvist/Development/io-gatekeeper-proxy-access'
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/mharvist/Development/chef-repo'
