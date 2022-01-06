@@ -1,55 +1,9 @@
-[include]
-    path = ~/.gitconfig_local
 [user]
-    name = Mark Harviston
+	email = mark.harviston@oracle.com
+	name = Mark Harviston
 [push]
-    default = current
-    followTags = true
-[core]
-    excludesfile = ~/.gitignore_global
-    editor = /usr/bin/vim
-    attributesfile = ~/.gitattributes
+	default = current
 [cola]
-    spellcheck = false
-[diff]
-	tool = diffmerge
-[difftool]
-    rompt = false
-[difftool "meld"]
-    trustExitCode = true
-    cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
-[difftool "json-diff"]
-    cmd = "json-diff-tool $BASE $LOCAL $REMOTE"
-    trustExitCode = true
-[difftool "yamldiff"]
-    cmd = "yamldiff --file1 $LOCAL --file2 $REMOTE"
-    trustExitCode = true
-[merge]
-	tool = diffmerge
-[merge "json"]
-    name = custom merge driver for json files
-    driver = git-json-merge %A %O %B
-[mergetool]
-    prompt = false
-	keepBackup = false
-[mergetool "meld"]
-    trustExitCode = true
-    cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
-[alias]
-    json-diff = difftool -t json-diff
-    co = checkout
-[remote "origin"]
-    tagopt = --tags
-[submodule]
-    recurse = true
-[pull]
-    default = current
-    followTags = true
-	rebase = true
-[difftool "diffmerge"]
-	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
-[mergetool "diffmerge"]
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-	trustExitCode = true
-[init]
-	defaultBranch = master
+	spellcheck = false
+[core]
+	editor = vim
