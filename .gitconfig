@@ -1,0 +1,9 @@
+[user]
+	email = mark.harviston@oracle.com
+	name = Mark Harviston
+[push]
+	default = current
+[cola]
+	spellcheck = false
+[core]
+	editor = vim
