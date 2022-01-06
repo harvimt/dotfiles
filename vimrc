@@ -1,10 +1,9 @@
-"execute pathogen#infect()
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set encoding=utf-8
+scriptencoding utf-8
+filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -19,7 +18,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'Konfekt/FastFold'
 Plugin 'dense-analysis/ale'
-"Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'smerrill/vcl-vim-plugin'
 Plugin 'edkolev/tmuxline.vim'
@@ -27,7 +25,6 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'mhinz/vim-signify'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-sensible'
-"Plugin 'majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jelera/vim-javascript-syntax'
@@ -42,13 +39,11 @@ Plugin 'benmills/vimux'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'GEverding/vim-hocon'
 Plugin 'hashivim/vim-terraform'
+Plugin 'moon-musick/vim-logrotate'
+Plugin 'vim-python/python-syntax'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-
-" Plugin 'myint/syntastic-extras'
-" Plugin 'vim-syntastic/syntastic'
 
 "if has("termguicolors")
     "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -56,34 +51,37 @@ filetype plugin indent on    " required
     "set termguicolors
 "endif
 
+set guifont=SourceCodeProForPowerline-Regular:h18
+
 let g:airline_powerline_fonts=1
-"let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 set mouse=a
-set ts=4
-set sw=4
+set tabstop=4
+set shiftwidth=4
 set smarttab
 set expandtab
-set nu
+set number
 set colorcolumn=120
 set updatetime=100
-
-"
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set clipboard=unnamed
+"set ambiwidth=double
+set list
+set listchars=tab:⇥\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 let g:ale_sign_error      = '🚫'
-let g:ale_sign_warning    = '⚠ '
+let g:ale_sign_warning    = '⚠️'
+let g:ale_sign_info       = 'ℹ️'
 
-"let g:ale_sign_error      = ''
-"let g:ale_sign_warning    = ''
 let g:signify_sign_change = '~'
 
-let g:ale_linters         = {'python': ['flake8']}
+let g:ale_linters         = {'python': ['flake8'], 'ruby': ['rubocop']}
 let g:ale_fixers          = {'ruby': ['rubocop'], 'yaml': ['prettier']}
 
+" enable the vim-python, python3 syntax (like f-strings)
+let g:python_highlight_all = 1
+
+let test#strategy = 'asyncrun'
 
 nmap ]l0 :lrewind<cr>
 nmap ]ln :lnext<cr>
@@ -105,9 +103,18 @@ nmap <leader>an :ALENext<cr>
 nmap <leader>ap :ALEPrev<cr>
 nmap <leader>af :ALEFix<cr>
 nmap <leader>al :ALELint<cr>
+"
+" RSpec.vim mappings
+let g:rspec_command = '!bundle exec rspec {spec}'
+nmap <Leader>rn :call RunNearestSpec()<CR>
+nmap <Leader>rl :call RunLastSpec()<CR>
+nmap <Leader>ra :call RunAllSpecs()<CR>
 
-set list
-set listchars=tab:⇥\ ,extends:›,precedes:‹,nbsp:·,trail:·
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 augroup vagrant
   au!
@@ -130,59 +137,26 @@ augroup hocon
   au BufRead,BufNewFile ocibuild.conf set filetype=hocon
 augroup END
 
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
-let g:yaml_formatter_indent_collection=0
-autocmd Filetype json setlocal ts=2 sts=2 sw=2
-autocmd Filetype lua setlocal ts=2 sts=2 sw=2
-autocmd Filetype xml setlocal ts=2 sts=2 sw=2
-autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
-autocmd Filetype java setlocal noexpandtab
-" supposedly syntastic is ok with BATS but not when invoked by syntastic... or
-" something... I don't care enough to investigate
-autocmd BufReadPre *.bats let b:syntastic_skip_checks = 1
+augroup logrotate
+    au!
+    au BufRead,BufNewFile */logrotate.d/* set filetype=logrotate
+augroup END
 
-" FZF Options
-"let g:fzf_dir = '~/.fzf'
-"imap <c-x><c-k> <plug>(fzf-complete-word)
-"imap <c-x><c-f> <plug>(fzf-complete-path)
-"imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-"imap <c-x><c-l> <plug>(fzf-complete-line)
+augroup sudoers
+    au!
+    au BufRead,BufNewFile */sudoers.d/* set filetype=sudoers
+augroup END
 
-" Rainbow Options
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+let     g:yaml_formatter_indent_collection=0
 
-let g:rbpt_max = 16
+augroup ruby
+    au!
+    autocmd Filetype ruby   setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
 
-let g:rbpt_loadcmd_toggle = 0
-set clipboard=unnamed
-
-" RSpec.vim mappings
-"nmap <Leader>t :call RunCurrentSpecFile()<CR>
-let g:rspec_command = "!bundle exec rspec {spec}"
-nmap <Leader>rn :call RunNearestSpec()<CR>
-nmap <Leader>rl :call RunLastSpec()<CR>
-nmap <Leader>ra :call RunAllSpecs()<CR>
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+autocmd Filetype yaml   setlocal tabstop=2 sts=2 shiftwidth=2
+autocmd Filetype json   setlocal tabstop=2 sts=2 shiftwidth=2
+autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
+autocmd Filetype xml    setlocal tabstop=2 sts=2 shiftwidth=2
+autocmd Filetype coffee setlocal tabstop=2 sts=2 shiftwidth=2
+autocmd Filetype java   setlocal noexpandtab
