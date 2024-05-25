@@ -41,6 +41,8 @@ Plugin 'GEverding/vim-hocon'
 Plugin 'hashivim/vim-terraform'
 Plugin 'moon-musick/vim-logrotate'
 Plugin 'vim-python/python-syntax'
+Plugin 'tpope/vim-surround'
+Plugin 'dracula/vim', { 'name': 'dracula' }
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -55,7 +57,7 @@ set guifont=SourceCodeProForPowerline-Regular:h18
 
 let g:airline_powerline_fonts=1
 set background=dark
-colorscheme solarized
+colorscheme dracula
 set mouse=a
 set tabstop=4
 set shiftwidth=4
@@ -75,18 +77,33 @@ let g:ale_sign_info       = 'ℹ️'
 
 let g:signify_sign_change = '~'
 
-let g:ale_linters         = {'python': ['flake8'], 'ruby': ['rubocop']}
-let g:ale_fixers          = {'ruby': ['rubocop'], 'yaml': ['prettier']}
+let g:ale_linters         = {
+            \ 'python': ['flake8'],
+            \ 'ruby': ['rubocop'],
+            \ 'chef': ['cookstyle'],
+            \ 'json': ['jsonlint'],
+            \ 'toml': ['dprint'],
+            \ 'terraform': ['tflint'],
+            \ }
+let g:ale_fixers          = {
+            \ 'ruby': ['rubocop'],
+            \ 'chef': ['rubocop'],
+            \ 'yaml': ['prettier'],
+            \ 'toml': ['dprint'],
+            \ }
+"let g:json_jsonlint_executable = 
 
 " enable the vim-python, python3 syntax (like f-strings)
 let g:python_highlight_all = 1
 
 let test#strategy = 'asyncrun'
 
+vmap <leader>" c""<esc>P
 nmap ]l0 :lrewind<cr>
 nmap ]ln :lnext<cr>
 nmap ]lp :lprev<cr>
-nmap <leader>gc :Gcommit<cr>
+nmap <leader>gc :Git commit -a<cr>
+nmap <leader>gp :Git push<cr>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 nmap <leader>gcl :!git cola<cr>
@@ -109,6 +126,7 @@ let g:rspec_command = '!bundle exec rspec {spec}'
 nmap <Leader>rn :call RunNearestSpec()<CR>
 nmap <Leader>rl :call RunLastSpec()<CR>
 nmap <Leader>ra :call RunAllSpecs()<CR>
+nmap <Leader>rf :call RunCurrentSpecFile()<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -147,13 +165,24 @@ augroup sudoers
     au BufRead,BufNewFile */sudoers.d/* set filetype=sudoers
 augroup END
 
-let     g:yaml_formatter_indent_collection=0
+autocmd BufNewFile,BufRead */recipes/*.rb set ft=chef syntax=ruby
 
 augroup ruby
     au!
     autocmd Filetype ruby   setlocal tabstop=2 sts=2 shiftwidth=2
 augroup END
 
+augroup chef
+    au!
+    autocmd Filetype chef   setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup Mkdir
+  autocmd!
+  autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
+augroup END
+
+let g:yaml_formatter_indent_collection=0
 autocmd Filetype yaml   setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype json   setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
