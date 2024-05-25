@@ -7,3 +7,6 @@
 	spellcheck = false
 [core]
 	editor = vim
+[alias]
+    autosquash = git rebase -i master --autosquash
+    recent-branches = 'git branch --sort=-committerdate'

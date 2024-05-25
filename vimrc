@@ -42,6 +42,7 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'moon-musick/vim-logrotate'
 Plugin 'vim-python/python-syntax'
 Plugin 'tpope/vim-surround'
+Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 
 call vundle#end()            " required
@@ -189,3 +190,22 @@ autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype xml    setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype coffee setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype java   setlocal noexpandtab
+
+" 1 or 0 -> blinking block
+" 2 -> solid block
+" 3 -> blinking underscore
+" 4 -> solid underscore
+" Recent versions of xterm (282 or above) also support
+" 5 -> blinking vertical bar
+" 6 -> solid vertical bar
+" Insert Mode
+" let &t_SI .= "\<Esc>[6 q"
+" Normal Mode
+" let &t_EI .= "\<Esc>[2 q"
+" let &t_SR = "\<Esc>[3 q"
+" autocmd VimLeave * let &t_me="\<Esc>]50;CursorShape=1\x7"
+let g:togglecursor_default = "block"
+let g:togglecursor_insert = "line"
+let g:togglecursor_leave = "line"
+" let g:togglecursor_disable_tmux = 0
+let g:togglecursor_force = 'xterm'

@@ -1,3 +1,9 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
 - link:
     ~/.tmux.conf: tmux.conf
     ~/.tmuxline-snapshot: tmuxline-snapshot
@@ -12,6 +18,7 @@
     ~/.zprofile: prezto/runcoms/zprofile
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore
+    ~/z: z
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

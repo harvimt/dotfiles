@@ -34,6 +34,7 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
 [submodule "z"]
 	path = z
 	url = https://github.com/rupa/z

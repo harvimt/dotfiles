@@ -1,28 +1,32 @@
 #
 # Executes commands at the start of an interactive session.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# init Homebrew
+if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # Source Prezto.
-zstyle ':prezto:module:prompt' theme 'agnoster'
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Init Oh-My-Posh
+if command -v oh-my-posh >/dev/null 2>&1; then
+    eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/agnosterplus.omp.json)"
+else
+    # fallback to prezto if oh-my-posh is not installed
+    zstyle ':prezto:module:prompt' theme 'agnoster'
+fi
+
+source ~/z/z.sh
 
 setopt interactive_comments
 
-# Customize to your needs...
+# macvim
 if which mvim &> /dev/null; then
     alias vim='mvim -v'
     alias vimdiff='mvim -vd'
-fi
-
-export PATH="$PATH:$HOME/pyenvs/flake8.py3.env/bin"
-if [[ -e ~/Library/Python/2.7 ]]; then
-    export PATH="${PATH}:/Users/mharvist/Library/Python/2.7/bin"
 fi
 
 alias rebuild-completions='rm -i ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompdump && compinit'
@@ -34,22 +38,23 @@ export VISUAL=${EDITOR}
 alias g=git
 alias dcp=docker-compose
 alias be='bundle exec'
-alias autosquash='git rebase -i master --autosquash'
-source ~/.dotfiles/z/z.sh
 
 # ssh as root with password
 alias sshrp='ssh -o PreferredAuthentications=password -l root'
-if which exa &> /dev/null; then
-    alias ls=exa
-    alias ll='exa -l'
-    alias tree='exa --tree'
+
+# setup eza an ls/tree replacement
+if which eza &> /dev/null; then
+    alias ls=eza
+    alias ll='eza -l'
+    alias tree='eza --tree'
 else
     alias ll='ls -l'
 fi
 
-alias recent-branches='git branch --sort=-committerdate'
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ghc == glasgow haskell compiler
-[ -f "/Users/mharvist/.ghcup/env" ] && source "/Users/mharvist/.ghcup/env" # ghcup-env
-eval "$(rbenv init -)"
+[ -f ~/.ghcup/env ] && source ~/.ghcup/env
+
+# if rbenv is installed use it
+command -v rbenv && eval "$(rbenv init -)"
