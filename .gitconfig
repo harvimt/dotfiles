@@ -1,5 +1,6 @@
+[include]
+    path = .gitconfig_local
 [user]
-	email = mark.harviston@oracle.com
 	name = Mark Harviston
 [push]
 	default = current
