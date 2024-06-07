@@ -18,20 +18,20 @@
     {
       "alignment": "left",
       "segments": [
-	  {
-  "type": "os",
-  "style": "powerline",
-  "foreground": "#26C6DA",
-  "background": "#546E7A",
-  "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
-  "properties": {}
-},
+        {
+          "type": "os",
+          "style": "powerline",
+          "foreground": "#26C6DA",
+          "background": "#546E7A",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+          "properties": {}
+        },
         {
           "background": "#ffffff",
           "foreground": "#100e23",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
-          "template": "{{ .UserName }}@{{ .HostName }} ",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
           "type": "session"
         },
         {

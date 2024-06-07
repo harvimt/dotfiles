@@ -13,7 +13,7 @@ fi
 
 # Init Oh-My-Posh
 if command -v oh-my-posh >/dev/null 2>&1; then
-    eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/agnosterplus.omp.json)"
+    eval "$(oh-my-posh init zsh --config ~/.omp.json)"
 else
     # fallback to prezto if oh-my-posh is not installed
     zstyle ':prezto:module:prompt' theme 'agnoster'
@@ -34,6 +34,8 @@ alias rebuild-completions='rm -i ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompd
 source ~/.zshrc_local
 export EDITOR=$(echo =vim)
 export VISUAL=${EDITOR}
+export HOMEBREW_NO_ENV_HINTS=yes
+export HOMEBREW_NO_AUTO_UPDATE=yes
 
 alias g=git
 alias dcp=docker-compose

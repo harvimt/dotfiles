@@ -29,6 +29,6 @@ function Create-Link {
 
 Create-Link -Source $profile1 -Dest $profile_link
 Create-Link -Source $profile2 -Dest $profile_link
-Create-Link -Source ~\.gitconfig -Dest "$PSScriptRoot\.gitconfig"
-Create-Link -Source ~\.gkmachine.omp.json -Dest "$PSScriptRoot\gkmachine.omp.json"
+Create-Link -Source ~\.gitconfig -Dest "$PSScriptRoot\gitconfig"
+Create-Link -Source ~\.omp.json -Dest "$PSScriptRoot\omp.json"
 #touch ~\.gitconfig_local

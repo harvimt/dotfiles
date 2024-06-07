@@ -10,3 +10,5 @@
 [alias]
     autosquash = git rebase -i master --autosquash
     recent-branches = 'git branch --sort=-committerdate'
+[init]
+	defaultBranch = master
