@@ -57,9 +57,9 @@
           "background_templates": [
             "{{ if .Error }}#e91e63{{ end }}"
           ],
-          "template": "\u2764\ufe0f",
+          "template": "\u2665  ",
           "properties": {
-            "always_enabled": true
+            "always_enabled": false
           }
         },
         {
