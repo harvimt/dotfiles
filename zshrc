@@ -39,11 +39,6 @@ export EDITOR=$(echo =vim)
 export VISUAL=${EDITOR}
 export HOMEBREW_NO_ENV_HINTS=yes
 export HOMEBREW_NO_AUTO_UPDATE=yes
-=======
-export EDITOR=$(which vim)
-export VISUAL=$EDITOR
-export PAGER=$(which less)
->>>>>>> origin/mharvist-mac
 
 alias g=git
 alias tf=terraform
@@ -84,5 +79,7 @@ function jqi(){
     done
 }
 #setup sdkman
-export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+if brew list sdkman-cli >/dev/null 2>&1; then
+    export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+    [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+fi
