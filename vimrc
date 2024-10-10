@@ -89,7 +89,7 @@ let g:ale_linters         = {
             \ }
 let g:ale_fixers          = {
             \ 'ruby': ['rubocop'],
-            \ 'chef': ['rubocop'],
+            \ 'chef': ['cookstyle'],
             \ 'yaml': ['prettier'],
             \ 'toml': ['dprint'],
             \ }
