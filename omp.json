@@ -27,6 +27,17 @@
           "properties": {}
         },
         {
+          "type": "status",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#333333",
+          "foreground": "#e91e63",
+          "template": " ✘ ",
+          "properties": {
+            "always_enabled": false
+          }
+        },
+        {
           "background": "#ffffff",
           "foreground": "#100e23",
           "powerline_symbol": "\ue0b0",
@@ -49,23 +60,9 @@
           "type": "path"
         },
         {
-          "type": "status",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#00897b",
-          "background_templates": [
-            "{{ if .Error }}#e91e63{{ end }}"
-          ],
-          "template": " \u2665  ",
-          "properties": {
-            "always_enabled": false
-          }
-        },
-        {
           "background": "#95ffa4",
           "foreground": "#193549",
-          "powerline_symbol": "\ue0b0 ",
+          "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": " {{ .HEAD }} ",
           "type": "git"
