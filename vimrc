@@ -227,8 +227,8 @@ let &t_SI .= "\<Esc>[6 q"
 let &t_EI .= "\<Esc>[2 q"
 let &t_SR = "\<Esc>[3 q"
 " autocmd VimLeave * let &t_me="\<Esc>]50;CursorShape=1\x7"
-let g:togglecursor_default = "block"
-let g:togglecursor_insert = "line"
-let g:togglecursor_leave = "line"
+let g:togglecursor_default = 'block'
+let g:togglecursor_insert = 'line'
+let g:togglecursor_leave = 'line'
 " let g:togglecursor_disable_tmux = 0
 let g:togglecursor_force = 'xterm'
