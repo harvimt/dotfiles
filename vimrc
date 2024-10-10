@@ -185,6 +185,27 @@ augroup Mkdir
   autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
 augroup END
 
+" automatically make script files executable when writing for the first time
+function! NewScriptExec() abort
+    " check if this is a new file which starts with a shebang
+    if exists('s:new_file') && getline(1)[0:1] ==# '#!'
+        " based on https://stackoverflow.com/a/57539332
+        let l:file = expand('%')
+        let l:old_perm = getfperm(l:file)
+        " set the exec bit everywhere the read bit is set
+        let l:new_perm = substitute(l:old_perm, '\v(r.)-', '\1x', 'g')
+        if (l:old_perm != l:new_perm)
+            call setfperm(l:file, l:new_perm)
+        endif
+    endif
+endfunction
+
+augroup new_script_exec
+    autocmd!
+    autocmd BufNewFile * let s:new_file = 1
+    autocmd BufWritePost * call NewScriptExec()
+augroup END
+
 let g:yaml_formatter_indent_collection=0
 autocmd Filetype yaml   setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype json   setlocal tabstop=2 sts=2 shiftwidth=2
