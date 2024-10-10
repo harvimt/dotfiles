@@ -1,7 +1,7 @@
-"set encoding=utf-8
-"scriptencoding utf-8
-"filetype off
-"
+set encoding=utf-8
+scriptencoding utf-8
+filetype off
+
 "" set the runtime path to include Vundle and initialize
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -49,7 +49,7 @@ Plugin 'dracula/vim', { 'name': 'dracula' }
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-if has("termguicolors")
+if has('termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
