@@ -179,6 +179,7 @@ augroup chef
     autocmd Filetype chef   setlocal tabstop=2 sts=2 shiftwidth=2
 augroup END
 
+" automatically create directories that don't exist
 augroup Mkdir
   autocmd!
   autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
