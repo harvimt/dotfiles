@@ -48,11 +48,11 @@ Plugin 'dracula/vim', { 'name': 'dracula' }
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"if has("termguicolors")
-    "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    "set termguicolors
-"endif
+if has("termguicolors")
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
 
 set guifont=SourceCodeProForPowerline-Regular:h18
 
@@ -199,10 +199,10 @@ autocmd Filetype java   setlocal noexpandtab
 " 5 -> blinking vertical bar
 " 6 -> solid vertical bar
 " Insert Mode
-" let &t_SI .= "\<Esc>[6 q"
+let &t_SI .= "\<Esc>[6 q"
 " Normal Mode
-" let &t_EI .= "\<Esc>[2 q"
-" let &t_SR = "\<Esc>[3 q"
+let &t_EI .= "\<Esc>[2 q"
+let &t_SR = "\<Esc>[3 q"
 " autocmd VimLeave * let &t_me="\<Esc>]50;CursorShape=1\x7"
 let g:togglecursor_default = "block"
 let g:togglecursor_insert = "line"

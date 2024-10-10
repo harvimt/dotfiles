@@ -1,3 +1,4 @@
 *.sw[op]
 .vagrant
 .DS_Store
+*~

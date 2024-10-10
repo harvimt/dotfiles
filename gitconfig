@@ -1,14 +1,20 @@
+# vim: ft=gitconfig
+[include]
+    path = ~/.gitconfig_local
 [user]
-	email = mark.harviston@gmail.com
-	name = Mark Harviston
+    name = Mark Harviston
 [push]
-	default = current
+    default = current
 [cola]
-	spellcheck = false
+    spellcheck = false
 [core]
-	editor = vim
+    editor = vim
 [alias]
     autosquash = git rebase -i master --autosquash
     recent-branches = 'git branch --sort=-committerdate'
 [init]
-	defaultBranch = master
+    defaultBranch = master
+    excludesFile = ~/.gitignore_global
+    attributesfile = ~/.gitattributes
+    ppush = push --force-with-lease
+    bbranch = branch --sort=-committerdate
