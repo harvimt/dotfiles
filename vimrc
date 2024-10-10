@@ -1,17 +1,30 @@
-set encoding=utf-8
-scriptencoding utf-8
-filetype off
-
-" set the runtime path to include Vundle and initialize
+"set encoding=utf-8
+"scriptencoding utf-8
+"filetype off
+"
+"" set the runtime path to include Vundle and initialize
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" let Vundle manage Vundle, required
+"" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " Other Vundle plugins
-Plugin 'tpope/vim-fugitive'
+"
+"" Filetypes
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'smerrill/vcl-vim-plugin'
+Plugin 'PProvost/vim-ps1'
+Plugin 'lepture/vim-jinja'
+Plugin 'tarekbecker/vim-yaml-formatter'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'hashivim/vim-terraform'
+Plugin 'moon-musick/vim-logrotate'
+Plugin 'vim-python/python-syntax'
+Plugin 'pearofducks/ansible-vim'
+
+"" Other
+Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'editorconfig/editorconfig-vim'
@@ -19,28 +32,16 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'Konfekt/FastFold'
 Plugin 'dense-analysis/ale'
 Plugin 'luochen1990/rainbow'
-Plugin 'smerrill/vcl-vim-plugin'
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'mhinz/vim-signify'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-sensible'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'PProvost/vim-ps1'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'lepture/vim-jinja'
-Plugin 'tarekbecker/vim-yaml-formatter'
 Plugin 'chrisbra/DynamicSigns'
 Plugin 'vim-scripts/bats.vim'
 Plugin 'vim-test/vim-test'
-Plugin 'benmills/vimux'
-Plugin 'pearofducks/ansible-vim'
 Plugin 'GEverding/vim-hocon'
-Plugin 'hashivim/vim-terraform'
-Plugin 'moon-musick/vim-logrotate'
-Plugin 'vim-python/python-syntax'
 Plugin 'tpope/vim-surround'
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'dracula/vim', { 'name': 'dracula' }
@@ -92,7 +93,7 @@ let g:ale_fixers          = {
             \ 'yaml': ['prettier'],
             \ 'toml': ['dprint'],
             \ }
-"let g:json_jsonlint_executable = 
+"let g:json_jsonlint_executable =
 
 " enable the vim-python, python3 syntax (like f-strings)
 let g:python_highlight_all = 1
