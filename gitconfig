@@ -11,10 +11,9 @@
     editor = vim
 [alias]
     autosquash = git rebase -i master --autosquash
-    recent-branches = 'git branch --sort=-committerdate'
+    ppush = push --force-with-lease
+    bbranch = branch --sort=-committerdate
 [init]
     defaultBranch = master
     excludesFile = ~/.gitignore_global
     attributesfile = ~/.gitattributes
-    ppush = push --force-with-lease
-    bbranch = branch --sort=-committerdate
