@@ -60,12 +60,17 @@
           "type": "path"
         },
         {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "",
           "background": "#95ffa4",
           "foreground": "#193549",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": " {{ .HEAD }} ",
-          "type": "git"
+          "background_templates": [ "{{ if .Working.Changed }}#ffeb3b{{ end }}" ],
+          "template": " {{ .HEAD }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}",
+          "properties": {
+            "fetch_status": true,
+            "source": "cli"
+          }
         }
       ],
       "type": "prompt"
