@@ -22,6 +22,7 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'moon-musick/vim-logrotate'
 Plugin 'vim-python/python-syntax'
 Plugin 'pearofducks/ansible-vim'
+Plugin 'neilhwatson/vim_cf3'
 
 "" Other
 Plugin 'tpope/vim-fugitive'
