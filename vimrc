@@ -45,6 +45,7 @@ Plugin 'GEverding/vim-hocon'
 Plugin 'tpope/vim-surround'
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'alfredodeza/pytest.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
