@@ -147,10 +147,6 @@ nmap <leader>al :ALELint<cr>
 "
 " RSpec.vim mappings
 let g:rspec_command = '!bundle exec rspec {spec}'
-nmap <Leader>rn :call RunNearestSpec()<CR>
-nmap <Leader>rl :call RunLastSpec()<CR>
-nmap <Leader>ra :call RunAllSpecs()<CR>
-nmap <Leader>rf :call RunCurrentSpecFile()<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -189,11 +185,23 @@ augroup sudoers
     au BufRead,BufNewFile */sudoers.d/* set filetype=sudoers
 augroup END
 
-autocmd BufNewFile,BufRead */recipes/*.rb set ft=chef syntax=ruby
-
 augroup ruby
     au!
-    autocmd Filetype ruby   setlocal tabstop=2 sts=2 shiftwidth=2
+    autocmd Filetype ruby setlocal tabstop=2 sts=2 shiftwidth=2
+    autocmd Filetype ruby nnoremap <Leader>tn :call RunNearestSpec()<CR>
+    autocmd Filetype ruby nnoremap <Leader>tl :call RunLastSpec()<CR>
+    autocmd Filetype ruby nnoremap <Leader>ta :call RunAllSpecs()<CR>
+    autocmd Filetype ruby nnoremap <Leader>tf :call RunCurrentSpecFile()<CR>
+augroup END
+
+augroup python
+    au!
+    autocmd Filetype python setlocal tabstop=4 sts=4 shiftwidth=4
+    autocmd Filetype python nnoremap <Leader>tn :Pytest function<CR>
+    autocmd Filetype python nnoremap <Leader>tm :Pytest method<CR>
+    autocmd Filetype python nnoremap <Leader>tc :Pytest class<CR>
+    autocmd Filetype python nnoremap <Leader>ta :Pytest project<CR>
+    autocmd Filetype python nnoremap <Leader>tf :Pytest file<CR>
 augroup END
 
 augroup chef
