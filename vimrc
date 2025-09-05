@@ -46,9 +46,13 @@ Plugin 'tpope/vim-surround'
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'alfredodeza/pytest.vim'
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-coverage'
+Plugin 'google/vim-glaive'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+call glaive#Install()
 
 if has('termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
