@@ -17,3 +17,5 @@
     bbranch = branch --sort=-committerdate
 [init]
     defaultBranch = master
+[pull]
+	rebase = true
