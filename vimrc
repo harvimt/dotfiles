@@ -206,6 +206,7 @@ augroup END
 
 augroup chef
     au!
+    autocmd BufNewFile,BufRead */recipes/*.rb set ft=chef syntax=ruby
     autocmd Filetype chef   setlocal tabstop=2 sts=2 shiftwidth=2
 augroup END
 
@@ -237,12 +238,35 @@ augroup new_script_exec
 augroup END
 
 let g:yaml_formatter_indent_collection=0
-autocmd Filetype yaml   setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype json   setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype xml    setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype coffee setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype java   setlocal noexpandtab
+augroup yaml
+    autocmd!
+    autocmd Filetype yaml   setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup json
+    autocmd!
+    autocmd Filetype json   setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup lua
+    autocmd!
+    autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup xml
+    autocmd!
+    autocmd Filetype xml    setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup coffee
+    autocmd!
+    autocmd Filetype coffee setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup java
+    autocmd!
+    autocmd Filetype java   setlocal noexpandtab
+augroup END
 
 " 1 or 0 -> blinking block
 " 2 -> solid block
