@@ -99,7 +99,23 @@ let g:ale_fixers          = {
             \ 'yaml': ['prettier'],
             \ 'toml': ['dprint'],
             \ }
+
 "let g:json_jsonlint_executable =
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+"set statusline=%{LinterStatus()}
+let g:airline_section_b='%{LinterStatus()}'
+
 
 " enable the vim-python, python3 syntax (like f-strings)
 let g:python_highlight_all = 1
