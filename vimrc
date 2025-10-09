@@ -210,6 +210,12 @@ augroup chef
     autocmd Filetype chef   setlocal tabstop=2 sts=2 shiftwidth=2
 augroup END
 
+augroup puppet
+    au!
+    autocmd BufNewFile,BufRead *.pp set ft=puppet syntax=ruby
+    autocmd Filetype ruby setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
 " automatically create directories that don't exist
 augroup Mkdir
   autocmd!
