@@ -86,3 +86,9 @@
 [submodule "vim/bundle/vim-rspec"]
 	path = vim/bundle/vim-rspec
 	url = https://github.com/thoughtbot/vim-rspec.git
+[submodule "zsh-snap"]
+	path = zsh-snap
+	url = https://github.com/marlonrichert/zsh-snap.git
+[submodule "znap-repos/zsh-syntax-highlighting"]
+	path = znap-repos/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

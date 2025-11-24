@@ -6,6 +6,9 @@
 #
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+test -d ~/.dotfiles/zsh-znap/ && source ~/.dotfiles/zsh-znap/znap.zsh  # Start Znap
+zstyle ':znap:*' repos-dir ~/.dotfiles/znap-repos
+
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
