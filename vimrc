@@ -22,7 +22,7 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'moon-musick/vim-logrotate'
 Plugin 'vim-python/python-syntax'
 Plugin 'pearofducks/ansible-vim'
-Plugin 'tweekmonster/braceless.vim'
+Plugin 'neilhwatson/vim_cf3'
 
 "" Other
 Plugin 'tpope/vim-fugitive'
@@ -46,9 +46,14 @@ Plugin 'GEverding/vim-hocon'
 Plugin 'tpope/vim-surround'
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'alfredodeza/pytest.vim'
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-coverage'
+Plugin 'google/vim-glaive'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+call glaive#Install()
 
 if has('termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -94,7 +99,23 @@ let g:ale_fixers          = {
             \ 'yaml': ['prettier'],
             \ 'toml': ['dprint'],
             \ }
+
 "let g:json_jsonlint_executable =
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+"set statusline=%{LinterStatus()}
+let g:airline_section_b='%{LinterStatus()}'
+
 
 " enable the vim-python, python3 syntax (like f-strings)
 let g:python_highlight_all = 1
@@ -126,10 +147,6 @@ nmap <leader>al :ALELint<cr>
 "
 " RSpec.vim mappings
 let g:rspec_command = '!bundle exec rspec {spec}'
-nmap <Leader>rn :call RunNearestSpec()<CR>
-nmap <Leader>rl :call RunLastSpec()<CR>
-nmap <Leader>ra :call RunAllSpecs()<CR>
-nmap <Leader>rf :call RunCurrentSpecFile()<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -168,16 +185,35 @@ augroup sudoers
     au BufRead,BufNewFile */sudoers.d/* set filetype=sudoers
 augroup END
 
-autocmd BufNewFile,BufRead */recipes/*.rb set ft=chef syntax=ruby
-
 augroup ruby
     au!
-    autocmd Filetype ruby   setlocal tabstop=2 sts=2 shiftwidth=2
+    autocmd Filetype ruby setlocal tabstop=2 sts=2 shiftwidth=2
+    autocmd Filetype ruby nnoremap <Leader>tn :call RunNearestSpec()<CR>
+    autocmd Filetype ruby nnoremap <Leader>tl :call RunLastSpec()<CR>
+    autocmd Filetype ruby nnoremap <Leader>ta :call RunAllSpecs()<CR>
+    autocmd Filetype ruby nnoremap <Leader>tf :call RunCurrentSpecFile()<CR>
+augroup END
+
+augroup python
+    au!
+    autocmd Filetype python setlocal tabstop=4 sts=4 shiftwidth=4
+    autocmd Filetype python nnoremap <Leader>tn :Pytest function<CR>
+    autocmd Filetype python nnoremap <Leader>tm :Pytest method<CR>
+    autocmd Filetype python nnoremap <Leader>tc :Pytest class<CR>
+    autocmd Filetype python nnoremap <Leader>ta :Pytest project<CR>
+    autocmd Filetype python nnoremap <Leader>tf :Pytest file<CR>
 augroup END
 
 augroup chef
     au!
+    autocmd BufNewFile,BufRead */recipes/*.rb set ft=chef syntax=ruby
     autocmd Filetype chef   setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup puppet
+    au!
+    autocmd BufNewFile,BufRead *.pp set ft=puppet syntax=ruby
+    autocmd Filetype ruby setlocal tabstop=2 sts=2 shiftwidth=2
 augroup END
 
 " automatically create directories that don't exist
@@ -208,13 +244,35 @@ augroup new_script_exec
 augroup END
 
 let g:yaml_formatter_indent_collection=0
-autocmd Filetype yaml   setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype json   setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype xml    setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype coffee setlocal tabstop=2 sts=2 shiftwidth=2
-autocmd Filetype java   setlocal noexpandtab
-autocmd FileType python,yaml,haml BracelessEnable +indent +highlight
+augroup yaml
+    autocmd!
+    autocmd Filetype yaml   setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup json
+    autocmd!
+    autocmd Filetype json   setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup lua
+    autocmd!
+    autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup xml
+    autocmd!
+    autocmd Filetype xml    setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup coffee
+    autocmd!
+    autocmd Filetype coffee setlocal tabstop=2 sts=2 shiftwidth=2
+augroup END
+
+augroup java
+    autocmd!
+    autocmd Filetype java   setlocal noexpandtab
+augroup END
 
 " 1 or 0 -> blinking block
 " 2 -> solid block

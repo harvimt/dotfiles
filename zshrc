@@ -70,6 +70,9 @@ alias rake='ruby-exec rake'
 
 command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init - zsh)"
 command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
+[ -d $HOME/.cargo/bin ] && export PATH=$PATH:$HOME/.cargo/bin
+
+[ -d $HOME/.local/bin ] && export PATH=$PATH:$HOME/.local/bin
 
 #include jq
 function jqi(){

@@ -70,14 +70,19 @@
         },
         {
           "properties": {
-            "cache_duration": "none"
+            "cache_duration": "none",
+            "fetch_status": true,
+            "source": "cli"
           },
-          "template": " {{ .HEAD }} ",
+          "template": " {{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
           "foreground": "#193549",
           "powerline_symbol": "\ue0b0",
           "background": "#95ffa4",
           "type": "git",
-          "style": "powerline"
+          "style": "powerline",
+          "background_templates": [
+            "{{ if .Working.Changed }}#ffeb3b{{ end }}"
+          ]
         }
       ]
     }
