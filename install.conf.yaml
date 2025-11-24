@@ -20,6 +20,7 @@
     ~/.gitignore_global: gitignore
     ~/z: z
     ~/.omp.json: omp.json
+    ~/.nvim: nvim
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

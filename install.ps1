@@ -55,6 +55,7 @@ Create-Link -Source ~\.gitconfig -Dest "$PSScriptRoot\gitconfig"
 Create-Link -Source ~\.omp.json -Dest "$PSScriptRoot\omp.json"
 Create-Link -Source ~\.vimrc -Dest "$PSScriptRoot\vimrc"
 Create-Link -Source ~\.vim -Dest "$PSScriptRoot\vim"
+Create-Link -Source $env:LOCALAPPDATA/nvim -Dest "$PSScriptRoot\nvim"
 $null >> ~\.gitconfig_local
 
 echo "Press any key to exit."
