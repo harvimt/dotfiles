@@ -22,6 +22,7 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'moon-musick/vim-logrotate'
 Plugin 'vim-python/python-syntax'
 Plugin 'pearofducks/ansible-vim'
+Plugin 'tweekmonster/braceless.vim'
 
 "" Other
 Plugin 'tpope/vim-fugitive'
@@ -213,6 +214,7 @@ autocmd Filetype lua    setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype xml    setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype coffee setlocal tabstop=2 sts=2 shiftwidth=2
 autocmd Filetype java   setlocal noexpandtab
+autocmd FileType python,yaml,haml BracelessEnable +indent +highlight
 
 " 1 or 0 -> blinking block
 " 2 -> solid block
