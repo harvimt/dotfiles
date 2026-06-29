@@ -71,6 +71,8 @@ alias irb='ruby-exec irb'
 alias rspec='ruby-exec rspec'
 alias rake='ruby-exec rake'
 
+alias pr='poetry run'
+
 command -v rbenv >/dev/null 2>&1 && eval "$(rbenv init - zsh)"
 command -v pyenv >/dev/null 2>&1 && eval "$(pyenv init -)"
 [ -d $HOME/.cargo/bin ] && export PATH=$PATH:$HOME/.cargo/bin
@@ -91,3 +93,7 @@ if brew list sdkman-cli >/dev/null 2>&1; then
     export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
     [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 fi
+
+
+alias scm-ssh='/Users/mharvist/.ssh/scm-script.sh'
+scm-ssh start_agent

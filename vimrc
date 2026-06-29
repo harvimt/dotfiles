@@ -92,13 +92,17 @@ let g:ale_linters         = {
             \ 'json': ['jsonlint'],
             \ 'toml': ['dprint'],
             \ 'terraform': ['tflint'],
+            \ 'cf3': ['cf_promises'],
             \ }
 let g:ale_fixers          = {
             \ 'ruby': ['rubocop'],
             \ 'chef': ['cookstyle'],
             \ 'yaml': ['prettier'],
             \ 'toml': ['dprint'],
+            \ 'cf3': ['cf-promises'],
             \ }
+
+" call ale#lint#registry#Add( \  'cf3', \  'hello_world#fixers#hello_fmt#Fix', \  ['hellolang'], \  'Check cfengine3 syntax using cf-promises' \)
 
 "let g:json_jsonlint_executable =
 function! LinterStatus() abort

@@ -17,6 +17,8 @@
     autosquash = git rebase -i master --autosquash
     ppush = push --force-with-lease
     bbranch = branch --sort=-committerdate
+    stashgrep = "!f() { for i in `git stash list --format=\"%gd\"` ; \
+                 do git stash show -p $i | grep -H --label=\"$i\" \"$@\" ; done ; }; f"
 [init]
     defaultBranch = master
 [pull]
